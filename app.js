@@ -1,29 +1,37 @@
 const lapCartIncrement = document.getElementById('lapCartIncrement')
-const itemIncrement = document.querySelectorAll('.itemIncrement')
 const display1 = document.getElementById('display1')
 const button1Plus = document.getElementById('button1Plus')
-
+const searchBtn = document.getElementById('searchBtn')
+const checkoutBtn = document.getElementById('checkoutBtn')
 
 let laptops = [{
-    title: 'Acer Predator Helios 300',
+    id:1,
+    title: 'Predator Helios 300',
     description: 'Helios 300 Octa Core i7 10th Gen - (16 GB/1 TB HDD/256 GB SSD/Windows 10 Home/6 GB Graphics/NVIDIA GeForce RTX 3060',
     src: 'img/he1.jpg',
-    price: 70000
+    price: 70000,
+    count: 1
 },{
+    id:2,
     title: 'Lenovo Legion 5',
     description: 'Lenovo Legion 5 Ryzen 5 Hexa Core 5600H - (8 GB/512 GB SSD/Windows 10 Home/4 GB Graphics/NVIDIA GeForce GTX 1650',
     src: 'img/he2.jpg',
-    price: 90000
+    price: 90000,
+    count: 1
 },{
+    id:3,
     title: 'MSI GF65',
     description:  'MSI GF65 Thin Core i7 9th Gen - (16 GB/512 GB SSD/Windows 10 Home/6 GB Graphics/NVIDIA GeForce RTX 2060',
     src: 'img/he3.jpg',
-    price: 75000
+    price: 75000,
+    count: 1
 },{
+    id:4,
     title: 'ASUS TUF',
     description: 'ASUS TUF Gaming F15 Core i5 10th Gen - (8 GB/512 GB SSD/Windows 11 Home/4 GB Graphics/NVIDIA GeForce GTX GTX 1650',
     src: 'img/he4.jpg',
-    price: 60000
+    price: 60000,
+    count: 1
 }
 ]
 
@@ -62,19 +70,97 @@ for(let i=0;i<laptops.length;i++){
     button.className = 'btn btn-primary itemIncrement'
     button.textContent = 'Add to Cart'
     button.addEventListener('click',()=>{
-      cartItems.push(obj)
-      console.log(cartItems);
-    })
+        let value = 0;
+        value++
+        lapCartIncrement.textContent = value;
+        lapCartIncrement.style.fontWeight = 'bold'
+        // =============
+        // Adding Cart Items
+        // ==============
+      let foundIndex = cartItems.findIndex((value)=>{
+        return value.id === obj.id
+      })
+      console.log(foundIndex);
+      if(foundIndex === -1){
+          cartItems.push(obj)
+      }else{
+          cartItems[foundIndex].count += 1;
+      }  
+    })    
 div3.appendChild(button)
 div.appendChild(div1) 
 }
 
-// CART LIST ITEMS===============
 
-let cartItemAppend = document.querySelector('#cartItemAppend')
-for(let i =0;i<cartItems.length;i++){
+checkoutBtn.addEventListener('click', ()=>{
+    makeTable()
+})
+
+function makeTable(){
+    let cartItemAppend = document.querySelector('#cartItemAppend')
+    cartItemAppend.innerHTML = '';
+    for(let i =0;i<cartItems.length;i++){
+    let tr = document.createElement('tr')
     let td1 = document.createElement('td')
     let td2 = document.createElement('td')
+    let td3 = document.createElement('td')
+    let td4 = document.createElement('td')
+    let td5 = document.createElement('td')
+    let td6 = document.createElement('td')
+    let button1 = document.createElement('button')
+    let button2 = document.createElement('button')
+    let button3 = document.createElement('button')
+    let icon = document.createElement('i')
+    let cartObjects = cartItems[i]
+    td1.textContent = cartObjects.title
+    td2.textContent = cartObjects.price
+    td3.style.textAlign = 'center'
+    td3.textContent = cartObjects.count
+    // button1.className = 'btn btn-success'
+    button1.textContent = '+'
+    // button2.className = 'btn btn-secondary'
+    button2.textContent = '-'
+    // button3.className = 'btn btn-danger'
+    button3.textContent = 'X'
+    icon.className = 'fa-solid fa-circle-trash'
+    button3.appendChild(icon)
+    tr.appendChild(td1)
+    tr.appendChild(td2)
+    tr.appendChild(td3)
+    td4.appendChild(button1)
+    td5.appendChild(button2)
+    td6.appendChild(button3)
+    tr.appendChild(td4)
+    tr.appendChild(td5)
+    tr.appendChild(td6)
+    cartItemAppend.appendChild(tr)
+    button1.addEventListener('click',()=>{
+        let foundIndex = cartItems.findIndex((value)=>{
+            return value.id === cartObjects.id
+          })
+          console.log(foundIndex);
+          cartItems[foundIndex].count += 1;
+            makeTable()
+    })
+    button2.addEventListener('click', ()=>{
+        let foundIndex = cartItems.findIndex((value)=>{
+            return value.id === cartObjects.id
+          })
+          if(cartItems[foundIndex].count === 1){
+              return
+          }else{
+            cartItems[foundIndex].count -= 1;
+            makeTable()
+          }
+    })
+    button3.addEventListener('click',()=>{
+        cartItems = cartItems.filter((value)=>{
+            return value.id !== cartObjects.id
+        })
+        console.log(cartItems);
+        makeTable()
+    })
+    }
 }
 
 
@@ -83,17 +169,4 @@ for(let i =0;i<cartItems.length;i++){
 
 
 
-let value = 0;
-itemIncrement.forEach(element =>{
-    element.addEventListener('click', ()=>{
-    value++
-    lapCartIncrement.textContent = value;
-    lapCartIncrement.style.fontWeight = 'bold'
-         })
-})
 
-let value1 = 1;
-button1Plus.addEventListener('click',()=>{
-    value1++;
-    display1.textContent = value1;
-})
