@@ -200,6 +200,9 @@ orderConfirm.addEventListener('click', ()=>{
         alert('Place order first')
     }else{
         alert('Order Placed')
+        total = 0
+        totalAmount.textContent = total
+        cartItems.length = 0
     }
 })
 
