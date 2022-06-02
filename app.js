@@ -3,6 +3,8 @@ const display1 = document.getElementById('display1')
 const button1Plus = document.getElementById('button1Plus')
 const searchBtn = document.getElementById('searchBtn')
 const checkoutBtn = document.getElementById('checkoutBtn')
+const totalAmount = document.getElementById('totalAmount')
+let total = 0
 
 let laptops = [{
     id:1,
@@ -10,6 +12,8 @@ let laptops = [{
     description: 'Helios 300 Octa Core i7 10th Gen - (16 GB/1 TB HDD/256 GB SSD/Windows 10 Home/6 GB Graphics/NVIDIA GeForce RTX 3060',
     src: 'img/he1.jpg',
     price: 70000,
+    initialPrice: 70000,
+
     count: 1
 },{
     id:2,
@@ -17,6 +21,8 @@ let laptops = [{
     description: 'Lenovo Legion 5 Ryzen 5 Hexa Core 5600H - (8 GB/512 GB SSD/Windows 10 Home/4 GB Graphics/NVIDIA GeForce GTX 1650',
     src: 'img/he2.jpg',
     price: 90000,
+    initialPrice: 90000,
+
     count: 1
 },{
     id:3,
@@ -24,6 +30,8 @@ let laptops = [{
     description:  'MSI GF65 Thin Core i7 9th Gen - (16 GB/512 GB SSD/Windows 10 Home/6 GB Graphics/NVIDIA GeForce RTX 2060',
     src: 'img/he3.jpg',
     price: 75000,
+    initialPrice: 75000,
+
     count: 1
 },{
     id:4,
@@ -31,10 +39,11 @@ let laptops = [{
     description: 'ASUS TUF Gaming F15 Core i5 10th Gen - (8 GB/512 GB SSD/Windows 11 Home/4 GB Graphics/NVIDIA GeForce GTX GTX 1650',
     src: 'img/he4.jpg',
     price: 60000,
+    initialPrice: 60000,
+
     count: 1
 }
 ]
-
 
 // SHOP LIST ITEMS ITERATION ==============
 
@@ -70,19 +79,29 @@ for(let i=0;i<laptops.length;i++){
     button.className = 'btn btn-primary itemIncrement'
     button.textContent = 'Add to Cart'
     button.addEventListener('click',()=>{
-        let value = 0;
-        value++
-        lapCartIncrement.textContent = value;
-        lapCartIncrement.style.fontWeight = 'bold'
       let foundIndex = cartItems.findIndex((value)=>{
         return value.id === obj.id
       })
-      console.log(foundIndex);
       if(foundIndex === -1){
           cartItems.push(obj)
+          total+=obj.price
+          totalAmount.textContent = total
       }else{
-          cartItems[foundIndex].count += 1;
-      }  
+        cartItems[foundIndex].count += 1;
+        let foundIndex1 = laptops.findIndex((value)=>{
+            return value.id === obj.id
+        })
+        let initialPrice = laptops[foundIndex1].initialPrice          
+        cartItems[foundIndex].price = initialPrice *  cartItems[foundIndex].count 
+        total += initialPrice
+        totalAmount.textContent = total
+      }
+   
+
+      console.log(total);  
+      lapCartIncrement.textContent = cartItems.length ;
+      lapCartIncrement.style.fontWeight = 'bold'
+
     })    
 div3.appendChild(button)
 div.appendChild(div1) 
@@ -113,6 +132,7 @@ function makeTable(){
     td2.textContent = cartObjects.price
     td3.style.textAlign = 'center'
     td3.textContent = cartObjects.count
+    td3.style.fontWeight = 'bold'
     button1.textContent = '+'
     button2.textContent = '-'
     button3.textContent = 'X'
@@ -132,9 +152,15 @@ function makeTable(){
         let foundIndex = cartItems.findIndex((value)=>{
             return value.id === cartObjects.id
           })
-          console.log(foundIndex);
+        let foundIndex1 = laptops.findIndex((value)=>{
+            return value.id === cartObjects.id
+        })
           cartItems[foundIndex].count += 1;
-            makeTable()
+          let initialPrice = laptops[foundIndex1].initialPrice          
+          cartItems[foundIndex].price = initialPrice *  cartItems[foundIndex].count
+          total += initialPrice
+          totalAmount.textContent = total
+          makeTable()
     })
     button2.addEventListener('click', ()=>{
         let foundIndex = cartItems.findIndex((value)=>{
@@ -142,10 +168,17 @@ function makeTable(){
           })
           if(cartItems[foundIndex].count === 1){
               return
-          }else{
-            cartItems[foundIndex].count -= 1;
-            makeTable()
           }
+          let foundIndex1 = laptops.findIndex((value)=>{
+            return value.id === cartObjects.id
+        })
+            cartItems[foundIndex].count --
+            let initialPrice = laptops[foundIndex1].initialPrice          
+            cartItems[foundIndex].price -=  initialPrice
+            total -= initialPrice
+            totalAmount.textContent = total
+            makeTable()          
+
     })
     button3.addEventListener('click',()=>{
         cartItems = cartItems.filter((value)=>{
@@ -153,7 +186,8 @@ function makeTable(){
         })
         console.log(cartItems);
         makeTable()
-    })
+        lapCartIncrement.textContent = cartItems.length ;
+            })
     }
 }
 
