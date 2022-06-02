@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PickLap</title>
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!-- CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/landing.html"><i class="fa-solid fa-laptop"></i>  PickLap</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+            </ul>
+              <div class="navbarRight">
+                  <ul class="nav navbar-nav">
+                    <li class="nav-item"> <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Checkout
+                      </button></a></li>
+                      <li class="nav-item"><a class="nav-link active" href="cart.html"><i class="fa-solid fa-cart-shopping"></i> My Cart : <span id="lapCartIncrement">0</span></a></li>
+                      <li class="nav-item"><a class="nav-link active" href="#"> Login</a></li>
+                      <li class="nav-item"><a class="nav-link active" href="#"> SignUp</a></li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Search Bar -->
+      <form>
+        <div class="row my-5" id="searchBox">
+          <div class="col">
+            <input type="text" class="form-control placeholder w-25 bg-light" placeholder="Search for a laptop or a brand">
+            <button class="btn btn-warning" type="button" id="searchBtn">Search</button>
+            <p id="searchPop"></p>
+          </div>
+        </div>
+      </form>
+
+
+    <!-- Items -->
+      <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 col-sm-6 ">
+                <div class="card" style="width: 18rem;">
+                    <img src="img/he1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Acer Helio</h5>
+                      <p class="card-text">
+                          <a href="">acer Predator Helios 300 Core i7 11th Gen - (16 GB/1 TB HDD/512 GB SSD/Windows 10 Home/4 GB Graphics/NVIDIA GeForce R...</a> 
+                      </p>
+                      <button class="btn btn-primary itemIncrement">Add to Cart</button>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card" style="width: 18rem;">
+                    <img src="img/he2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Lenovo Legion</h5>
+                      <p class="card-text">
+                        <a href="">Lenovo Legion 5 Ryzen 5 Hexa Core 4600H - (8 GB/1 TB HDD/256 GB SSD/Windows 10 Home/4 GB Graphics/NVIDIA GeForce GTX 1650</a> 
+                      </p>
+                      <button class="btn btn-primary itemIncrement"> Add to Cart</button>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="card" style="width: 18rem;">
+                    <img src="img/he3.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">MSI</h5>
+                      <p class="card-text">
+                          <a href="">MSI GF65 Thin Hexa Core i5 10th Gen - (16 GB/512 GB SSD/Windows 10 Home/6 GB Graphics/NVIDIA GeForce RTX 3060</a>
+                      </p>
+                      <button class="btn btn-primary itemIncrement"> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="card" style="width: 18rem;">
+                    <img src="img/he4.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">ASUS TUF</h5>
+                      <p class="card-text">
+                        <a href="">ASUS TUF Gaming F15 Core i5 10th Gen - (8 GB/512 GB SSD/Windows 10 Home/4 GB Graphics/NVIDIA GeForce GTX 1650 Ti</a>
+                    </p>
+                      <button class="btn btn-primary itemIncrement"> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-md-down">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Yourcart items</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+       
+    <footer>
+            <div class="d-flex justify-content-center">
+                <center>
+                 <p>Copyright © PickLap Store. All Rights
+                Reserved</p>
+                </center>	
+            </div>    
+    </footer>
+    
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+</html>

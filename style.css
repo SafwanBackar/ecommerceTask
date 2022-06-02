@@ -1,0 +1,16 @@
+img {
+    width: 100%;
+    height: 15vw;
+    object-fit: contain ;
+    transition: .2s ease-in-out
+}
+img:hover{
+    transform: scale(1.2);
+
+}
+a{
+    text-decoration: none;
+}
+#searchBox{
+    text-align: center;
+}
