@@ -96,9 +96,6 @@ for(let i=0;i<laptops.length;i++){
         total += initialPrice
         totalAmount.textContent = total
       }
-   
-
-      console.log(total);  
       lapCartIncrement.textContent = cartItems.length ;
       lapCartIncrement.style.fontWeight = 'bold'
 
@@ -184,10 +181,16 @@ function makeTable(){
         cartItems = cartItems.filter((value)=>{
             return value.id !== cartObjects.id
         })
-        console.log(cartItems);
         makeTable()
-        lapCartIncrement.textContent = cartItems.length ;
-            })
+        lapCartIncrement.textContent = cartItems.length;
+        let foundIndex1 = laptops.findIndex((value)=>{
+            return value.id === cartObjects.id
+        })
+        let initialPrice = laptops[foundIndex1].initialPrice          
+        total-= initialPrice*cartObjects.count
+        totalAmount.textContent = total
+
+       })
     }
 }
 
