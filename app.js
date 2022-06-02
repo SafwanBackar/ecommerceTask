@@ -4,6 +4,7 @@ const button1Plus = document.getElementById('button1Plus')
 const searchBtn = document.getElementById('searchBtn')
 const checkoutBtn = document.getElementById('checkoutBtn')
 const totalAmount = document.getElementById('totalAmount')
+const orderConfirm = document.getElementById('orderConfirm')
 let total = 0
 
 let laptops = [{
@@ -193,6 +194,14 @@ function makeTable(){
        })
     }
 }
+
+orderConfirm.addEventListener('click', ()=>{
+    if(total === 0){
+        alert('Place order first')
+    }else{
+        alert('Order Placed')
+    }
+})
 
 
 
