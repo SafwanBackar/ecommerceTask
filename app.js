@@ -74,9 +74,6 @@ for(let i=0;i<laptops.length;i++){
         value++
         lapCartIncrement.textContent = value;
         lapCartIncrement.style.fontWeight = 'bold'
-        // =============
-        // Adding Cart Items
-        // ==============
       let foundIndex = cartItems.findIndex((value)=>{
         return value.id === obj.id
       })
@@ -116,11 +113,8 @@ function makeTable(){
     td2.textContent = cartObjects.price
     td3.style.textAlign = 'center'
     td3.textContent = cartObjects.count
-    // button1.className = 'btn btn-success'
     button1.textContent = '+'
-    // button2.className = 'btn btn-secondary'
     button2.textContent = '-'
-    // button3.className = 'btn btn-danger'
     button3.textContent = 'X'
     icon.className = 'fa-solid fa-circle-trash'
     button3.appendChild(icon)
