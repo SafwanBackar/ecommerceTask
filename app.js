@@ -203,6 +203,8 @@ orderConfirm.addEventListener('click', ()=>{
         total = 0
         totalAmount.textContent = total
         cartItems.length = 0
+        lapCartIncrement.textContent = cartItems.length ;
+        lapCartIncrement.style.fontWeight = 'bold'
     }
 })
 
