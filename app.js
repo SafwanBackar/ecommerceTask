@@ -197,7 +197,7 @@ function makeTable(){
 
 orderConfirm.addEventListener('click', ()=>{
     if(total === 0){
-        alert('Place order first')
+        alert('Your cart is empty!!')
     }else{
         alert('Order Placed')
         total = 0
