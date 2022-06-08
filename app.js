@@ -1,6 +1,4 @@
 const lapCartIncrement = document.getElementById('lapCartIncrement')
-const display1 = document.getElementById('display1')
-const button1Plus = document.getElementById('button1Plus')
 const searchBtn = document.getElementById('searchBtn')
 const checkoutBtn = document.getElementById('checkoutBtn')
 const totalAmount = document.getElementById('totalAmount')
@@ -14,7 +12,6 @@ let laptops = [{
     src: 'img/he1.jpg',
     price: 70000,
     initialPrice: 70000,
-
     count: 1
 },{
     id:2,
@@ -23,7 +20,6 @@ let laptops = [{
     src: 'img/he2.jpg',
     price: 90000,
     initialPrice: 90000,
-
     count: 1
 },{
     id:3,
@@ -32,7 +28,6 @@ let laptops = [{
     src: 'img/he3.jpg',
     price: 75000,
     initialPrice: 75000,
-
     count: 1
 },{
     id:4,
@@ -41,7 +36,6 @@ let laptops = [{
     src: 'img/he4.jpg',
     price: 60000,
     initialPrice: 60000,
-
     count: 1
 }
 ]
